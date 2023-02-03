@@ -34,8 +34,8 @@ class Profile(models.Model):
   def get_update_url(self):
     return reverse('driver:driver-update', kwargs={'id': self.id})
 
-  def get_absolute_url(self):
-    return reverse('driver:driver-main', kwargs={'id': self.id})
+  # def get_absolute_url(self):
+  #   return reverse('driver:driver-profile', kwargs={'id': self.id})
 
 class Order(models.Model):
   #id = request_id

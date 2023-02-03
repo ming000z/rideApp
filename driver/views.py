@@ -21,7 +21,11 @@ class DriverUpdateView(UpdateView):
 
   model = Profile
   fields = ['is_driver','type','plante_num','max_passenger','available_status','special_info']
-
+ 
+  
+  def get_success_url(self):
+    id_ = self.kwargs.get("id")
+    return reverse('driver:driver-profile', kwargs={'id': id_})
   
   def get_object(self):
     id_ = self.kwargs.get("id")
@@ -40,9 +44,9 @@ class DriverDetailView(DetailView):
     id_ = self.kwargs.get("id")
     return get_object_or_404(Profile, id=id_)
   
-class DriverMainView(ListView):
+class DriverMainView(DetailView):
   template_name = 'driver/driver_main.html'
 
-  def get_object(self):
-    id_ = self.kwargs.get("id")
-    return get_object_or_404(Profile, id=id_)
+#   def get_object(self):
+#     id_ = self.kwargs.get("id")
+#     return get_object_or_404(Profile, id=id_)
