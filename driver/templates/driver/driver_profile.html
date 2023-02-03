@@ -3,9 +3,13 @@
 {% block navbar %}
 <h1>This is driver profile page </h1>
 
-<h1>{{ object.headline }}</h1>
-<p>{{ object.content }}</p>
-<p>Reporter: {{ object.reporter }}</p>
-<p>Published: {{ object.pub_date|date }}</p>
-<p>Date: {{ now|date }}</p>
+<p>username: {{ object.username }}</p>
+<p>email: {{ object.email }}</p>
+<p>is_driver: {{ object.is_driver }}</p>
+<p>type: {{ object.type }}</p>
+<p>plante_num: {{ object.plante_num }}</p>
+<p>imax_passengerd: {{ object.max_passenger }}</p>
+<p>available_status: {{ object.available_status }}</p>
+<p>special_info: {{ object.special_info }}</p>
+
 {% endblock%}
