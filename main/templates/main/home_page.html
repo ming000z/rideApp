@@ -2,10 +2,16 @@
 
 {% block navbar %}
 <h1>This is home page </h1>
-<a href="{{ profile.get_absolute_url }}">Go to user profile page</a>
-<br>
+{% if profile.is_driver %}
+<a href='{{ profile.get_profile_url }}'>Your Driver Profile</a>
+{% else %}
+<p>{{ profile.get_update_url}}</p>
+<a href='{{ profile.get_update_url}}'>Want to register as a driver?</a>
+{% endif%}
 
-<a href="request">Make a Riding Request</a>
+
+
+<a href="">Make a Riding Request</a>
 <br>
 <a href="jointrip">Join another trip</a>
 <br>

@@ -23,8 +23,11 @@ class Profile(models.Model):
   available_status = models.BooleanField(default=True)
   special_info = models.TextField(blank=True, null=True, default=None)
   
-  def get_absolute_url(self):
-    return reverse('usr:usr-profile', kwargs={'id': self.id})
+  def get_profile_url(self):
+    return reverse('driver:driver-update', kwargs={'id': self.id})
+  
+  def get_update_url(self):
+    return reverse('driver:driver-profile', kwargs={'id': self.id})
 
 
 class Order(models.Model):
@@ -41,6 +44,8 @@ class Order(models.Model):
     OPEN = 1
     CANEL = 5
   
+  rider_id = models.IntegerField(null=False, default=1)
+  driver_id = models.IntegerField(null=False, default=1)
   trip_status = models.IntegerField(choices=Trip_State.choices)
   share_ids = ArrayField(models.CharField(max_length=200), blank=True, default=None)
   
