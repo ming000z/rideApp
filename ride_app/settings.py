@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'main',
     'usr',
     'driver',
+    'order',
 ]
 
 MIDDLEWARE = [

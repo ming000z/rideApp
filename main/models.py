@@ -51,10 +51,16 @@ class Order(models.Model):
     OPEN = 1
     CANEL = 5
   
-  rider_id = models.IntegerField(null=False, default=1)
-  driver_id = models.IntegerField(null=False, default=1)
-  trip_status = models.IntegerField(choices=Trip_State.choices)
-  share_ids = ArrayField(models.CharField(max_length=200), blank=True, default=None)
+  rider_id = models.IntegerField(default=0)
+  driver_id = models.IntegerField(default=None, null=True)
+  trip_status = models.IntegerField(choices=Trip_State.choices, default=Trip_State.OPEN)
+  share_ids = ArrayField(models.CharField(max_length=200), blank=True, default=None, null=True)
+  
+  def get_create_url(self):
+    return reverse('order:order-create', kwargs={'id': self.id})
+  
+  # def get_absolute_url(self):
+  #   return reverse('order:driver-detail', kwargs={'id': self.id})
   
   
   

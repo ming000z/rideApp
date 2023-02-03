@@ -46,3 +46,5 @@ class DriverMainView(ListView):
   def get_object(self):
     id_ = self.kwargs.get("id")
     return get_object_or_404(Profile, id=id_)
+  
+  
