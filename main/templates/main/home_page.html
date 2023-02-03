@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<h1>This is home page </h1>
+<a href="{{ profile.get_absolute_url }}">Go to user profile page</a>
+<br>
+
+<a href="request">Make a Riding Request</a>
+<br>
+<a href="jointrip">Join another trip</a>
+<br>
+{% endblock%}
+

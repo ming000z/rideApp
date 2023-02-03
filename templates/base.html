@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>This is the title</title>
+  </head>
+  <body>
+    {% csrf_token %}
+    {% if user.is_authenticated %}
+      <h3>Welcome user: {{user.username}}</h3>
+      <a href="logout">Log out</a>
+      <br>
+      
+      {% if profile.is_driver %}
+        <a href="linktodriver">Your Driver Profile</a>
+      {% else %}
+        <a href="linktodriversignup">Want to register as a driver?</a>
+      {% endif%}
+      
+      
+    {% else %}
+      <h3>You are not log in</h3>
+      <a href="login">Log in</a>
+      <h3>Don't have account? Register </h3>
+      <a href="signup">Register</a>
+    {% endif%}
+
+    {% block navbar %}
+      replace me
+    {% endblock %}
+
+
+  </body>
+</html>
