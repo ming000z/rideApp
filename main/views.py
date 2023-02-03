@@ -7,6 +7,9 @@ from django.http import Http404
 from django.contrib.auth.models import User
 from .models import (Profile, Order)
 from django.contrib.auth.forms import AuthenticationForm
+
+from django.contrib import messages  
+
 # Create your views here.
 
 def home_page_view(request):
@@ -33,15 +36,13 @@ def signup(request):
   if request.method == "POST":
     user_form = NewUserForm(request.POST)
     if user_form.is_valid():
-      print("valid")
       user = user_form.save()
-      print(user)
       Profile.objects.create(user=user)
       login(request, user)
       messages.success(request, "Registration successful.")
       return redirect('main:main-home')
-    
     messages.error(request, "Unsuccessful registration, invalid information")
+
     
   user_form = NewUserForm()
   context = {

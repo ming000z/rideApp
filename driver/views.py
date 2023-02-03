@@ -1,5 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render,redirect, get_object_or_404
 from django.urls import reverse
+
+from django.utils import timezone
 
 from main.models import Profile
 from .forms import ProfileForm
@@ -14,8 +16,12 @@ from django.views.generic import (
 # Create your views here.
 class DriverUpdateView(UpdateView):
   template_name = 'driver/driver_update.html'
-  form_class = ProfileForm
-  queryset = Profile.objects.all()
+  #form_class = ProfileForm
+  #queryset = Profile.objects.all()
+
+  model = Profile
+  fields = ['is_driver','type','plante_num','max_passenger','available_status','special_info']
+
   
   def get_object(self):
     id_ = self.kwargs.get("id")
@@ -28,8 +34,15 @@ class DriverUpdateView(UpdateView):
   
 class DriverDetailView(DetailView):
   template_name = 'driver/driver_profile.html'
+  model = Profile
 
   def get_object(self):
     id_ = self.kwargs.get("id")
     return get_object_or_404(Profile, id=id_)
   
+class DriverMainView(ListView):
+  template_name = 'driver/driver_main.html'
+
+  def get_object(self):
+    id_ = self.kwargs.get("id")
+    return get_object_or_404(Profile, id=id_)
