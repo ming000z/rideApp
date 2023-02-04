@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.utils import timezone
 
 from main.models import Profile, Order
-from .forms import ProfileForm
+from .forms import ProfileForm, DriverAcceptForm
 from django.views.generic import (
   CreateView,
   DetailView,
@@ -54,15 +54,14 @@ class DriverHomeView(DetailView):
     return orders
 
 
-class DriverSearchView(DetailView):
+class DriverSearchView(ListView):
   template_name = 'driver/driver_order.html'
-  model = Profile
+  model = Order
+  form_class = DriverAcceptForm
   
-  def get_object(self):
-    id_ = self.request.user.id
-    return get_object_or_404(Profile, user_id=id_)
+  
   
   def get_context_data(self, **kwargs) :
     orders = super().get_context_data(**kwargs)
-    orders['driver_order'] = Order.objects.filter(trip_status=1)
+    orders['open_order'] = Order.objects.filter(trip_status=1)
     return orders

@@ -1,6 +1,6 @@
 from django import forms
 
-from main.models import Profile
+from main.models import Profile, Order
 
 
 class ProfileForm(forms.ModelForm):
@@ -13,4 +13,5 @@ class ProfileForm(forms.ModelForm):
       'special_info'
     ]
 
-    
+class DriverAcceptForm(forms.ModelForm):
+  accpet = forms.BooleanField(help_text="want to take this order?")
