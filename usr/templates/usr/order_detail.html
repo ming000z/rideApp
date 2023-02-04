@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+
+<h1>This is user order detail page</h1>
+
+{% if orders.trip_status is 1 %}
+<h1>destination: {{ orders.destination }}</h1>
+<p>arrival time: {{ orders.arrival_time }}</p>
+<p>Total Passenger: {{ orders.total_passenger }}</p>
+<p>Share: {{ orders.can_share }}</p>
+<p>Trip status: {{ orders.get_trip_status_display}}</p>
+<a href="{%  orders.id%}"> Edit </a></p>
+
+{% endif %}
+
+
+{% if orders.trip_status is 2 %}
+<h1>destination: {{ orders.destination }}</h1>
+<p>arrival time: {{ orders.arrival_time }}</p>
+<p>Total Passenger: {{ orders.total_passenger }}</p>
+<p>Share: {{ orders.can_share }}</p>
+<p>Trip status: {{ orders.get_trip_status_display}}</p>
+
+<p>Driver name: {{ user.username}}</p>
+<p>car type: {{ profile.type}}</p>
+<p>car plant: {{ profile.plante_num}}</p>
+<p>special_info: {{ profile.special_info}}</p>
+<a href="{% url 'main:main-home' %}">Back to Main page</a>
+{% endif %}
+
+{% endblock%}

@@ -23,11 +23,11 @@
 
 <h3>Your ongoing order</h3>
 {% for order in orders_open %}
-  <p>{{ order.id }} - <a href=""> {{ order.destination}} </a></p>
+  <p>{{ order.id }} - <a href="{% url 'usr:usr-order-detail' order.id%}"> {{ order.destination}} </a></p>
 {% endfor %}
 
 {% for order in orders_comfirme %}
-  <p>{{ order.id }} - <a href=""> {{ order.destination}} </a></p>
+  <p>{{ order.id }} - <a href="{% url 'usr:usr-order-detail' order.id%}"> {{ order.destination}} </a></p>
 {% endfor %}
 
 {% endif%}
