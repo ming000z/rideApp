@@ -10,6 +10,14 @@ from django.contrib.auth.forms import AuthenticationForm
 
 from django.contrib import messages  
 
+from django.views.generic import (
+  CreateView,
+  DetailView,
+  ListView,
+  UpdateView,
+  DeleteView
+)
+
 # Create your views here.
 
 def home_page_view(request):
@@ -23,9 +31,20 @@ def home_page_view(request):
   except Profile.DoesNotExist:
     profile = None
   
+  try:
+    orders_open = Order.objects.filter(rider_id=request.user.id, trip_status=1)
+  except Profile.DoesNotExist:
+    orders_open = None
+  try:
+    orders_comfirme = Order.objects.filter(rider_id=request.user.id, trip_status=2)
+  except Profile.DoesNotExist:
+    orders_comfirme = None
+    
   context = {
     'user': user,
-    'profile': profile
+    'profile': profile,
+    'orders_open' : orders_open,
+    'orders_comfirme' : orders_comfirme
   }
   return render(request, 'main/home_page.html', context)
 
@@ -79,3 +98,7 @@ def log_out(request):
   messages.info(request, "You are succesfully logged out")
   return redirect('main:main-home')
     
+
+
+  
+  
