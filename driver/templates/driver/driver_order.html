@@ -5,7 +5,7 @@
 <h1>This is your available order list page</h1>
 
 {% for obj in open_order %}
-  <p>{{ obj.id }} - <a href="{% url 'order:order-detail' obj.id %}"> {{ obj.destination}} </a></p>
+  <p>{{ obj.id }} - {{ obj.destination}} <a href="{% url 'driver:driver-accpet-order' obj.id %}">Want to take this order?</a></p>
 {% endfor %}
 
 <a href="{% url 'driver:driver-main' user.id %}">Back to Driver home page</a>

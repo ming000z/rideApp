@@ -8,7 +8,7 @@
 
 <h3>Your ongoing order</h3>
 {% for order in driver_in_trip_order %}
-  <p>{{ order.id }} - <a href="{% url 'order:order-detail' order.id %}"> {{ order.destination}} </a></p>
+  <p>{{ order.id }} - <a href="{% url 'driver:driver-complete-order' order.id %}"> {{ order.destination}} </a></p>
 {% endfor %}
 
 <h3>Your driver order: </h3>
