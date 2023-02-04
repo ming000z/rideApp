@@ -49,5 +49,20 @@ class DriverHomeView(DetailView):
   
   def get_context_data(self, **kwargs) :
     orders = super().get_context_data(**kwargs)
-    orders['driver_order'] = Order.objects.filter(driver_id=self.request.user.id)
+    orders['driver_in_trip_order'] = Order.objects.filter(driver_id=self.request.user.id, trip_status=3)
+    orders['driver_confirm_order'] = Order.objects.filter(driver_id=self.request.user.id, trip_status=2)
+    return orders
+
+
+class DriverSearchView(DetailView):
+  template_name = 'driver/driver_order.html'
+  model = Profile
+  
+  def get_object(self):
+    id_ = self.request.user.id
+    return get_object_or_404(Profile, user_id=id_)
+  
+  def get_context_data(self, **kwargs) :
+    orders = super().get_context_data(**kwargs)
+    orders['driver_order'] = Order.objects.filter(trip_status=1)
     return orders

@@ -15,6 +15,7 @@ class NewUserForm(UserCreationForm):
       'password1',
       'password2'
     ]
-    
+
+
 
 

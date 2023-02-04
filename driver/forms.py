@@ -12,3 +12,5 @@ class ProfileForm(forms.ModelForm):
       'max_passenger',
       'special_info'
     ]
+
+    

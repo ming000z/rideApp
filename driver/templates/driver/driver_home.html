@@ -2,15 +2,24 @@
 
 {% block navbar %}
 <h1>This is driver home page </h1>
-<h3>{{ object.user }}</h3>
+<h3>Hi driver: {{ object.user }}</h3>
 
 <a href="{% url 'driver:driver-profile' object.user.id %}">A link to driver profile</a>
 
-<h3>Your driver order</h3>
-
-{% for order in driver_order %}
+<h3>Your ongoing order</h3>
+{% for order in driver_in_trip_order %}
   <p>{{ order.id }} - <a href="{% url 'order:order-detail' order.id %}"> {{ order.destination}} </a></p>
 {% endfor %}
+
+<h3>Your driver order: </h3>
+
+{% for order in driver_confirm_order %}
+  <p>{{ order.id }} - <a href="{% url 'order:order-detail' order.id %}"> {{ order.destination}} </a></p>
+{% endfor %}
+
+
+<h2>Want to get more order?</h2>
+<a>Link to driver find</a>
 
 <a href="{% url 'main:main-home' %}">Back to Main page</a>
 
