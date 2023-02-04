@@ -36,15 +36,15 @@ def home_page_view(request):
   except Profile.DoesNotExist:
     orders_open = None
   try:
-    orders_comfirme = Order.objects.filter(rider_id=request.user.id, trip_status=2)
+    orders_comfirm = Order.objects.filter(rider_id=request.user.id, trip_status=2)
   except Profile.DoesNotExist:
-    orders_comfirme = None
+    orders_comfirm = None
     
   context = {
     'user': user,
     'profile': profile,
     'orders_open' : orders_open,
-    'orders_comfirme' : orders_comfirme
+    'orders_comfirm' : orders_comfirm
   }
   return render(request, 'main/home_page.html', context)
 

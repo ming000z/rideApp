@@ -5,7 +5,8 @@ from .views import (DriverUpdateView,
                     DriverHomeView, 
                     DriverSearchView,
                     DriverAcceptOrderView,
-                    DriverCompleteOrder)
+                    DriverCompleteOrder,
+                    DriverBeginOrder)
 
 app_name = 'driver'
 urlpatterns = [
@@ -15,4 +16,5 @@ urlpatterns = [
   path('find-order', DriverSearchView.as_view(), name='driver-find'),
   path('accept-order/<int:id>', DriverAcceptOrderView.as_view(), name="driver-accpet-order"),
   path('complete-order/<int:id>', DriverCompleteOrder.as_view(), name="driver-complete-order"),
+  path('begin-order/<int:id>', DriverBeginOrder.as_view(), name="driver-begin-order"),
 ]

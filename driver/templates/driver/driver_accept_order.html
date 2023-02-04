@@ -5,7 +5,7 @@
 <form method="POST"> 
   {% csrf_token %}
   {{ form.as_p }}
-  <input type="submit" value="Accept"/><a href="../">Cancel</a>
+  <input type="submit" value="Accept"/><a href="{% url 'driver:driver-main' user.id %}">Cancel</a>
 </form>
 
 {% endblock%}

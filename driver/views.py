@@ -80,6 +80,23 @@ class DriverAcceptOrderView(UpdateView):
   
   def get_success_url(self):
     return reverse('driver:driver-main', args=[self.request.user.id])
+  
+
+class DriverBeginOrder(UpdateView):
+  template_name = 'driver/driver_begin_order.html'
+  form_class =  DriverAcceptForm
+  model = Order
+  
+  def get_object(self):
+    id_ = self.kwargs.get("id")
+    return get_object_or_404(Order, id=id_)
+  
+  def form_valid(self, form):
+    form.instance.trip_status = 3
+    return super().form_valid(form)
+  
+  def get_success_url(self):
+    return reverse('driver:driver-main', args=[self.request.user.id])
 
 
 class DriverCompleteOrder(UpdateView):
