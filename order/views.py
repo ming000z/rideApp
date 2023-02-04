@@ -32,3 +32,11 @@ class OrderListView(ListView):
   
   def get_queryset(self):
     return Order.objects.filter(rider_id=self.request.user.pk)
+  
+
+class OrderDetailView(DetailView):
+  template_name = 'order/order_detail.html'
+
+  def get_object(self):
+    id_ = self.kwargs.get("id")
+    return get_object_or_404(Order, id=id_)

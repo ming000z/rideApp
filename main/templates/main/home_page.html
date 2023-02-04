@@ -7,9 +7,9 @@
 
 {% if user.is_authenticated %}
 {% if profile.is_driver %}
-<a href='{{ profile.get_absolute_url}}'>Your Driver Profil</a>
+<a href="{% url 'driver:driver-main' user.id %}">Your Driver Home</a>
 {% else %}
-<a href='{{ profile.get_update_url}}'>Want to register as a driver?</a>
+<a href="{% url 'driver:driver-update' user.id %}">Want to register as a driver?</a>
 {% endif%}
 
 

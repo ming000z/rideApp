@@ -3,7 +3,7 @@ from django.urls import reverse
 
 from django.utils import timezone
 
-from main.models import Profile
+from main.models import Profile, Order
 from .forms import ProfileForm
 from django.views.generic import (
   CreateView,
@@ -16,33 +16,38 @@ from django.views.generic import (
 # Create your views here.
 class DriverUpdateView(UpdateView):
   template_name = 'driver/driver_update.html'
-  #form_class = ProfileForm
-  #queryset = Profile.objects.all()
+  form_class = ProfileForm
+  queryset = Profile.objects.all()
 
-  model = Profile
-  fields = ['is_driver','type','plante_num','max_passenger','available_status','special_info']
-
+  def get_success_url(self):
+    return reverse('driver:driver-main', args=[self.request.user.id])
   
   def get_object(self):
-    id_ = self.kwargs.get("id")
-    return get_object_or_404(Profile, id=id_)
+    id_ = self.request.user.id
+    return get_object_or_404(Profile, user_id=id_)
   
   def form_valid(self, form):
-    print(form.cleaned_data)
+    form.instance.is_driver = True
     return super().form_valid(form)
   
   
-class DriverDetailView(DetailView):
+class DriverProfileView(DetailView):
   template_name = 'driver/driver_profile.html'
   model = Profile
 
   def get_object(self):
-    id_ = self.kwargs.get("id")
-    return get_object_or_404(Profile, id=id_)
+    id_ = self.request.user.id
+    return get_object_or_404(Profile, user_id=id_)
   
-class DriverMainView(ListView):
-  template_name = 'driver/driver_main.html'
-
+class DriverHomeView(DetailView):
+  template_name = 'driver/driver_home.html'
+  model = Profile
+  
   def get_object(self):
-    id_ = self.kwargs.get("id")
-    return get_object_or_404(Profile, id=id_)
+    id_ = self.request.user.id
+    return get_object_or_404(Profile, user_id=id_)
+  
+  def get_context_data(self, **kwargs) :
+    orders = super().get_context_data(**kwargs)
+    orders['driver_order'] = Order.objects.filter(driver_id=self.request.user.id)
+    return orders

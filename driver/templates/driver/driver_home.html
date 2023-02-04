@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<h1>This is driver home page </h1>
+<h3>{{ object.user }}</h3>
+
+<a href="{% url 'driver:driver-profile' object.user.id %}">A link to driver profile</a>
+
+<h3>Your driver order</h3>
+
+{% for order in driver_order %}
+  <p>{{ order.id }} - <a href="{% url 'order:order-detail' order.id %}"> {{ order.destination}} </a></p>
+{% endfor %}
+
+<a href="{% url 'main:main-home' %}">Back to Main page</a>
+
+{% endblock%}

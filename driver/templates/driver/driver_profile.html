@@ -6,12 +6,14 @@
 <p>username: {{ object.user.username }}</p>
 <p>email: {{ object.user.email }}</p>
 <p>is_driver: {{ object.is_driver }}</p>
-<p>type: {{ object.get_Profile_name }}</p>
+<p>type: {{ object.get_type_display }}</p>
 <p>plante_num: {{ object.plante_num }}</p>
 <p>imax_passengerd: {{ object.max_passenger }}</p>
 <p>available_status: {{ object.available_status }}</p>
 <p>special_info: {{ object.special_info }}</p>
 
 <a href='{{ profile.get_update_url}}'>update information</a>
+
+<a href="{% url 'driver:driver-main' user.id %}">Back to driver home page</a>
 
 {% endblock%}
