@@ -44,7 +44,7 @@
 <tr>
   <td>&emsp;{{ order.destination }}&emsp;</td>
   <td>&emsp;{{ order.arrival_time }}&emsp;</td>
-  <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-update'  order.id%}'">view detail </button>&emsp;</td>
+  <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-detail'  order.id%}'">view detail </button>&emsp;</td>
   <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-delete' order.id%}'">Cancel</button>&emsp;</td>
 </tr>
 {% endfor %}

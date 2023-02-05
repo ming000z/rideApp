@@ -31,7 +31,6 @@
 
 
 
-
 {% if orders.trip_status is 2 %}
 <tr>
     <th>Driver name</th>
@@ -50,8 +49,17 @@
     <td>&emsp;{{ profile.special_info}}</td>
 </tr>
 {% endif %}
+
+
 </table>
+
 <br>
+{% if orders.trip_status is 1 %}
+&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-update'  orders.id%}'">Edit </button>&emsp;
+
+{% endif %}
+
+
 &emsp;<button type="submit" onclick="location.href='{% url 'main:main-home' %}'">Back to Main page</button>
 
 {% endblock%}

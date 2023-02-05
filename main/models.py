@@ -25,7 +25,7 @@ class Profile(models.Model):
   type = models.CharField(max_length=10, choices=CARTYPE.choices, default=CARTYPE.NA) 
   plante_num = models.CharField(max_length=10, blank=True, null=True, default=None)
   max_passenger = models.IntegerField(default=0)
-  available_status = models.BooleanField(default=True)
+  available_status = models.BooleanField(default=True)#ongoing
   special_info = models.TextField(blank=True, null=True, default=None)
   
   def get_profile_url(self):

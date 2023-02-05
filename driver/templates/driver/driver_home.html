@@ -4,8 +4,8 @@
 <h1>This is driver home page </h1>
 <h3>Hi driver: {{ object.user }}</h3>
 
-<a href="{% url 'driver:driver-profile' object.user.id %}">A link to driver profile</a>
-
+<button type="submit" onclick="location.href='{% url 'driver:driver-find' %}'">Get More orders</button>
+&emsp; &emsp;<button type="submit" onclick="location.href='{% url 'driver:driver-profile' object.user.id %}'">Edit Driver profile</button>
 
 <h3>Ongoing order</h3>
 
@@ -59,14 +59,7 @@
 </table>
 
 
-
-
-
-
-<h2>Want to get more order?</h2>
-<a href="{% url 'driver:driver-find' %}">Link to driver find</a>
 <br>
-
-<a href="{% url 'main:main-home' %}">Back to Main page</a>
+<button type="submit" onclick="location.href='{% url 'main:main-home' %}'">Back to Main page</button>
 
 {% endblock%}
