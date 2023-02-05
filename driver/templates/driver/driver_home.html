@@ -6,16 +6,61 @@
 
 <a href="{% url 'driver:driver-profile' object.user.id %}">A link to driver profile</a>
 
-<h3>Your ongoing order</h3>
+
+<h3>Ongoing order</h3>
+
+{% if driver_confirm_order %}
+
+  <table>
+    <tr>
+      <th>Destination</th>
+      <th>Arrive Time</th>
+      <th>Detail</th>
+    </tr>
 {% for order in driver_confirm_order %}
-  <p>{{ order.id }} - <a href="{% url 'driver:driver-begin-order' order.id %}"> {{ order.destination}} </a></p>
+<tr>
+  <td>&emsp;{{ order.destination }}&emsp;</td>
+  <td>&emsp;{{ order.arrival_time }}&emsp;</td>
+  <td>&emsp;<button type="submit" onclick="location.href='{% url 'driver:driver-begin-order' order.id %}'">View to start </button>&emsp;</td>
+</tr>
 {% endfor %}
 
-<h3>Your driver order: </h3>
+  {% else %}
+  <p>&emsp;Currently you do not open order</p>
+{% endif %}
+</table>
+
+<br>
+<br>
+<br>
+  <h3>Intrains order</h3>
+  <table>
+{% if driver_in_trip_order %}
+<table>
+<tr>
+  <th>Destination</th>
+  <th>Arrive Time</th>
+  <th>Detail</th>
+</tr>
 
 {% for order in driver_in_trip_order %}
-  <p>{{ order.id }} - <a href="{% url 'driver:driver-complete-order' order.id %}"> {{ order.destination}} </a></p>
+<tr>
+
+  <td>&emsp;{{ order.destination }}&emsp;</td>
+  <td>&emsp;{{ order.arrival_time }}&emsp;</td>
+  <td>&emsp;<button type="submit" onclick="location.href='{% url 'driver:driver-complete-order' order.id %}'"> View to complete </button>&emsp;</td></td>
+</tr>
 {% endfor %}
+
+
+  {% else %}
+  <p>&emsp;Currently you do not have any in trip order </p>
+{% endif %}
+</table>
+
+
+
+
 
 
 <h2>Want to get more order?</h2>
