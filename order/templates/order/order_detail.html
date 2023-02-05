@@ -10,7 +10,7 @@
 <p>Share: {{ object.can_share }}</p>
 <p>Trip status: {{ object.get_trip_status_display}}</p>
 
-<a href="{% url 'driver:driver-main' user.id %}">Back to driver home page</a>
+<a href="{% url 'main:main-home'%}">Back to home page</a>
 
 
 {% endblock%}
