@@ -3,11 +3,13 @@
   <head>
     <title>This is 568P</title>
   </head>
+
+
   <body>
     {% csrf_token %}
     {% if user.is_authenticated %}
-      <h3>Welcome user: {{user.username}}</h3>
-      <a href="logout">Log out</a>
+      <p>Welcome user: {{user.username}}&emsp;&emsp;&emsp;
+      <a href="logout">Log out</a></p>
       <br>
       
       

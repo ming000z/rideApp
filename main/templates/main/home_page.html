@@ -6,30 +6,70 @@
 <h1>Welcome！This is home page </h1>
 
 {% if user.is_authenticated %}
+
+
+
 {% if profile.is_driver %}
-<a href="{% url 'driver:driver-main' user.id %}">Your Driver Home</a>
+   &emsp;<button type="submit" onclick="location.href='{% url 'driver:driver-main' user.id %}'">Your Driver Home </button>
 {% else %}
-<a href="{% url 'driver:driver-update' user.id %}">Want to register as a driver?</a>
+<button type="submit" onclick="location.href='{% url 'driver:driver-update' user.id %}'">Want to register as a driver? </button>
 {% endif%}
 
-
 <br>
-<a href="{% url 'order:order-create' %}">Make a Riding Request</a>
-<br>
-<a href="jointrip">Join another trip</a>
 <br>
 
+<table>
+  <tr>
+    <td>   <td><button type="submit" onclick="location.href='{% url 'order:order-create' %}'">Make a Riding Request </button></td></td>
+    <td>   <td>&emsp;&emsp;&emsp;&emsp;<button type="submit" onclick="location.href='jointrip'">Join another trip </button></td></td>
+  </tr>
+</table>
+<br>
 
 
-<h3>Your open order</h3>
+<table>
+  <tr>
+    <th>&emsp;Your open order&emsp;&emsp;</th>
+    <th>Destination</th>
+    <th>Arrive Time</th>
+    <th>Detail</th>
+    <th>Cancel</th>
+  </tr>
 {% for order in orders_open %}
-  <p>{{ order.id }} - <a href="{% url 'usr:usr-order-update' order.id%}"> {{ order.destination}} </a></p>
+<tr>
+  <td> </td>
+  <td>&emsp;{{ order.destination }}&emsp;</td>
+  <td>&emsp;{{ order.arrival_time }}&emsp;</td>
+  <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-update'  order.id%}'">view detail </button>&emsp;</td>
+  <td>&emsp;<button type="submit" onclick="location.href=''">Cancel</button>
+  </td>
+  
+</tr>
+
 {% endfor %}
 
-<h3>Your confirm order</h3>
+<tr><th>&emsp;Your confirm order&emsp;&emsp;</th></tr>
+
+
 {% for order in orders_comfirm %}
-  <p>{{ order.id }} - <a href="{% url 'usr:usr-order-detail' order.id%}"> {{ order.destination}} </a></p>
+<tr>
+  <td> </td>
+  <td>&emsp;{{ order.destination }}&emsp;</td>
+  <td>&emsp;{{ order.arrival_time }}&emsp;</td>
+  <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-detail'  order.id%}'">view detail </button>&emsp;</td>
+  <td>&emsp;<button type="submit" onclick="location.href=''">Cancel </button></td>
+  
+
+</td>
+
+
+</tr>
 {% endfor %}
+
+
+</table>
+
+
 
 <h3>Your share order</h3>
 
