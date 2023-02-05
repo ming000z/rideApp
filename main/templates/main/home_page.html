@@ -18,8 +18,6 @@
 <br>
 <br>
 
-
-
 <table>
   <tr>
     <td>   <td><button type="submit" onclick="location.href='{% url 'order:order-create' %}'">Make a Riding Request </button></td></td>
@@ -30,9 +28,8 @@
 
 <h3>Open order</h3>
 
-  {% if orders_open is None %}
-    <p>  currently you do not open order <p>
-  {% else %}
+  {% if orders_open%}
+
   <table>
     <tr>
       <th>Destination</th>
@@ -48,6 +45,8 @@
   <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-delete' order.id%}'">Cancel</button>&emsp;</td>
 </tr>
 {% endfor %}
+{% else %}
+<p>  currently you do not have any open order <p>
 
 {% endif %}
 </table>
@@ -57,9 +56,7 @@
 <br>
   <h3>Comfirm order</h3>
   <table>
-{% if orders_comfirm is None %}
-<p>  currently you do not have any comfirm order <p>
-{% else %}
+{% if orders_comfirm%}
 <table>
 <tr>
   <th>Destination</th>
@@ -75,6 +72,9 @@
   <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-detail'  order.id%}'">view detail </button>&emsp;</td></td>
 </tr>
 {% endfor %}
+{% else %}
+<p>  currently you do not have any comfirm order <p>
+
 {% endif %}
 </table>
 
