@@ -5,7 +5,8 @@
 <form method="POST"> 
   {% csrf_token %}
   {{ form.as_p }}
-  <input type="submit" value="Accept"/><a href="{% url 'driver:driver-main' user.id %}">Cancel</a>
+  <input type="submit" value="Accept"/>
 </form>
+&emsp; <button type="submit" onclick="location.href='{% url 'driver:driver-main' user.id %}'">Back</button>
 
 {% endblock%}

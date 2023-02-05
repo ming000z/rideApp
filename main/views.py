@@ -41,7 +41,7 @@ def home_page_view(request):
     orders_comfirm = None
     
   # try:
-  #   share = Order.objects.filter()
+  #   share = Order.objects.filter(share_ids)
     
   context = {
     'user': user,
