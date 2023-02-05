@@ -22,7 +22,7 @@
 <p>Trip status: {{ orders.get_trip_status_display}}</p>
 
 <p>Driver name: {{ user.username}}</p>
-<p>car type: {{ profile.type}}</p>
+<p>car type: {{ profile.get_type_display}}</p>
 <p>car plant: {{ profile.plante_num}}</p>
 <p>special_info: {{ profile.special_info}}</p>
 <a href="{% url 'main:main-home' %}">Back to Main page</a>

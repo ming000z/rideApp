@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    path('share/', include('share.urls')),
     path('order/', include('order.urls')),
     path('driver/', include('driver.urls')),
     path('usr/', include('usr.urls')),

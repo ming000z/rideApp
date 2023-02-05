@@ -5,10 +5,9 @@ from django.views.generic import (
   DetailView,
   ListView,
   UpdateView,
-  DeleteView
 )
 
-from .forms import UsrUpdateForm
+from .forms import UsrUpdateForm, UsrDeleteOrderForm
 from main.models import (Profile, Order,User)
 # Create your views here.
 
@@ -58,7 +57,19 @@ class UsrUpdateView(UpdateView):
   def get_success_url(self):
     return reverse('main:main-home')
   
-class UsrDeleteView(DeleteView):
+class UsrDeleteView(UpdateView):
+  template_name = 'usr/usr_order_delete.html'
+  form_class = UsrDeleteOrderForm
+  model = Order
   
+  def get_object(self):
+    id_ = self.kwargs.get("id")
+    return get_object_or_404(Order, id=id_)
   
+  def get_success_url(self):
+    return reverse('main:main-home')
+  
+  def form_valid(self, form):
+    form.instance.trip_status = 5
+    return super().form_valid(form)
   
