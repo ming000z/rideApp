@@ -24,7 +24,7 @@ class OrderCreateView(CreateView):
     return super().form_valid(form)
   
   def get_success_url(self):
-    return reverse('order:order-list')
+    return reverse('main:main-home')
   
 
 class OrderListView(ListView):

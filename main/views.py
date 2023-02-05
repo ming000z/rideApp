@@ -40,6 +40,9 @@ def home_page_view(request):
   except Profile.DoesNotExist:
     orders_comfirm = None
     
+  # try:
+  #   share = Order.objects.filter()
+    
   context = {
     'user': user,
     'profile': profile,
