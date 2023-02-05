@@ -10,10 +10,9 @@ class ShareJoinOrderForm(forms.ModelForm):
     model = Order
     fields = ['destination', 'arrival_time', 'total_passenger']
     
-  def __init__(self, user, *args, **kwargs):
-    self.user = user
-    super(ShareJoinOrderForm, self).__init__(*args, **kwargs)
-    self.user_id = Profile.get_user_id()
+  def __init__(self, *args, **kwargs):
+    self.user = kwargs.pop('user')
+    super().__init__(*args, **kwargs)
     self.fields['destination'].disabled = True
     self.fields['arrival_time'].disabled = True
     self.fields['total_passenger'].disabled = True
@@ -21,10 +20,8 @@ class ShareJoinOrderForm(forms.ModelForm):
   
   def save(self, commit: bool = True):
     instance = super().save(commit=False)
-    print(self.data)
     instance.total_passenger += int(self.data.get('pass_num'))
-    print(self.user_id)
-    instance.share_ids.append(self.user_id)
+    instance.share_ids.append(self.user)
     if commit:
         instance.save()
     return instance

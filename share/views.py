@@ -48,35 +48,23 @@ class ShareSearchResultView(ListView):
                                 can_share=True
                                 )
   
-# class ShareJoinOrderView(UpdateView):
-#   template_name = 'share/share_join.html'
-#   form_class = ShareJoinOrderForm
-#   form = form_class(reqeust.user, request.POST)
-#   queryset = Order.objects.all()
+class ShareJoinOrderView(UpdateView):
+  template_name = 'share/share_join.html'
+  form_class = ShareJoinOrderForm
+  queryset = Order.objects.all()
   
-#   def get_object(self):
-#     id_ = self.kwargs.get("id")
-#     return get_object_or_404(Order, id=id_)
+  def get_form_kwargs(self):
+        kwargs = super(ShareJoinOrderView, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
   
-#   def form_valid(self, form):
-#     return super().form_valid(form)
+  def get_object(self):
+    id_ = self.kwargs.get("id")
+    return get_object_or_404(Order, id=id_)
   
-#   def get_success_url(self):
-#     return reverse('order:order-detail', args=[self.kwargs.get("id")])
+  def form_valid(self, form):
+    return super().form_valid(form)
+  
+  def get_success_url(self):
+    return reverse('order:order-detail', args=[self.kwargs.get("id")])
 
-def event_view(request, id, model_class=Order, form_class=ShareJoinOrderForm,
-              template_name='share_join.html'):
-    event = get_object_or_404(model_class, id=id)
-
-    if request.POST:
-        form = form_class(request.user, request.POST)
-
-    if form.is_valid():
-        order = form.save()
-        return reverse('order:order-detail', kwargs={id:order.id})
-    else:
-        form = form_class(request.user)
-
-    return render(template_name, {
-        'form': form,
-    })
