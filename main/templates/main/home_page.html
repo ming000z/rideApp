@@ -18,6 +18,8 @@
 <br>
 <br>
 
+
+
 <table>
   <tr>
     <td>   <td><button type="submit" onclick="location.href='{% url 'order:order-create' %}'">Make a Riding Request </button></td></td>
@@ -26,46 +28,54 @@
 </table>
 <br>
 
+<h3>Open order</h3>
 
-<table>
-  <tr>
-    <th>&emsp;Your open order&emsp;&emsp;</th>
-    <th>Destination</th>
-    <th>Arrive Time</th>
-    <th>Detail</th>
-    <th>Cancel</th>
-  </tr>
+  {% if orders_open is None %}
+    <p>  currently you do not open order <p>
+  {% else %}
+  <table>
+    <tr>
+      <th>Destination</th>
+      <th>Arrive Time</th>
+      <th>Detail</th>
+      <th>Cancel</th>
+    </tr>
 {% for order in orders_open %}
 <tr>
-  <td> </td>
   <td>&emsp;{{ order.destination }}&emsp;</td>
   <td>&emsp;{{ order.arrival_time }}&emsp;</td>
   <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-update'  order.id%}'">view detail </button>&emsp;</td>
-  <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-delete' order.id%}'">Cancel</button>
-  </td>
-  
+  <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-delete' order.id%}'">Cancel</button>&emsp;</td>
 </tr>
-
 {% endfor %}
 
-<tr><th>&emsp;Your confirm order&emsp;&emsp;</th></tr>
+{% endif %}
+</table>
 
+<br>
+<br>
+<br>
+  <h3>Comfirm order</h3>
+  <table>
+{% if orders_comfirm is None %}
+<p>  currently you do not have any comfirm order <p>
+{% else %}
+<table>
+<tr>
+  <th>Destination</th>
+  <th>Arrive Time</th>
+  <th>Detail</th>
+</tr>
 
 {% for order in orders_comfirm %}
 <tr>
-  <td> </td>
+
   <td>&emsp;{{ order.destination }}&emsp;</td>
   <td>&emsp;{{ order.arrival_time }}&emsp;</td>
-  <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-detail'  order.id%}'">view detail </button>&emsp;</td>
-  
-
-</td>
-
-
+  <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-detail'  order.id%}'">view detail </button>&emsp;</td></td>
 </tr>
 {% endfor %}
-
-
+{% endif %}
 </table>
 
 

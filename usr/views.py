@@ -8,15 +8,8 @@ from django.views.generic import (
 )
 
 from .forms import UsrUpdateForm, UsrDeleteOrderForm
-from main.models import (Profile, Order,User)
+from main.models import (Profile, Order, User)
 # Create your views here.
-
-class UsrProfileView(DetailView):
-  template_name = 'usr/usr_profile.html'
-  
-  def get_object(self):
-    id_ = self.kwargs.get("id")
-    return get_object_or_404(Profile, id=id_) 
 
 
 def usr_order_detail_view(request,id):
@@ -27,20 +20,29 @@ def usr_order_detail_view(request,id):
     orders = None
 
   try:
-    user = User.objects.get(username=request.user.username)
-    profile = Profile.objects.get(user=user)
+    driver = User.objects.get(id=orders.driver_id)
+    profile = Profile.objects.get(user=driver)
+
   except User.DoesNotExist:
-    user = None
+    driver = None
     profile = None
-    
+
   context = {
-    'user': user,
     'profile': profile,
     'orders' : orders,
+    'driver': driver,
+
 
   }
   return render(request, 'usr/usr_order_detail.html', context)
 
+class UsrProfileView(DetailView):
+  template_name = 'usr/usr_profile.html'
+  
+  def get_object(self):
+    id_ = self.kwargs.get("id")
+    return get_object_or_404(Profile, id=id_) 
+  
 
 class UsrUpdateView(UpdateView):
   template_name = 'usr/usr_order_update.html'

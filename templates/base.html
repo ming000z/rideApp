@@ -10,14 +10,9 @@
     {% if user.is_authenticated %}
       <p>Welcome user: {{user.username}}&emsp;&emsp;&emsp;
       <a href="logout">Log out</a></p>
-      <br>
-      
       
     {% else %}
-      <h3>You are not log in</h3>
-      <a href="login">Log in</a>
-      <h3>Don't have account? Register </h3>
-      <a href="signup">Register</a>
+      <h3>You are not  <a href="login">log in</a>&emsp;&emsp;Don't have account?  <a href="signup">Register</a></h3>
     {% endif%}
 
     {% block navbar %}
