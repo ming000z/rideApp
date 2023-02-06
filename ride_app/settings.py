@@ -140,4 +140,4 @@ EMAIL_USE_TLS = False
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'mingzhe.z0629@gmail.com'
-EMAIL_HOST_PASSWORD = 'fiwwej-gywrah-hySwi3'
+EMAIL_HOST_PASSWORD = 'wwmarnoesfhwmbmu'
