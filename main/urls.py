@@ -2,7 +2,7 @@ from django.urls import path
 
 from .views import (home_page_view, signup, log_in,log_out,update_password)
 
-from django.conf.urls import url
+from django.urls import re_path as url
 
 app_name = 'main'
 

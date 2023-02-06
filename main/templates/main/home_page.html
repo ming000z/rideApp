@@ -104,7 +104,7 @@
       <td>&emsp;{{ share.arrival_time }}&emsp;</td>
       <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-detail'  share.id%}'">view detail </button>&emsp;</td></td>
       {% if share.trip_status == 1 %}
-      <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-detail'  share.id%}'">cancel </button>&emsp;</td></td>
+      <td>&emsp;<button type="submit" onclick="location.href='{% url 'share:share-cancel'  share.id%}'">cancel </button>&emsp;</td></td>
       {% else %}
       <td>&emsp;<button type="submit" disabled>can't cancel </button>&emsp;</td></td>
       {% endif %}
