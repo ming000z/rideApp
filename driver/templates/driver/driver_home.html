@@ -6,6 +6,9 @@
 <button type="submit" onclick="location.href='{% url 'driver:driver-profile' object.user.id %}'">Edit Driver profile</button>
 &emsp;<button type="submit" onclick="location.href='{% url 'driver:driver-find' %}'">Get More orders</button>
 
+
+<button type="submit" onclick="location.href='{% url 'driver:driver-inactive' object.user.id %}'">Inactive</button>
+
 <h2>Confirmed order</h2>
 
 {% if driver_confirm_order %}

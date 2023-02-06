@@ -133,3 +133,17 @@ def driver_send_email(request,id):
     email_list,#receiver email include rider and sharer
   )
   return render(request, 'driver/driver_send_email.html', {})
+
+
+def driver_inactive(request,id):
+  #template_name = 'driver/driver_sned_email.html'
+  orders = Order.objects.filter(driver_id=id, trip_status=2)
+  for free_order in orders:
+    free_order.driver_id = 0
+    free_order.trip_status = 1
+    free_order.save()
+  driver = Profile.objects.get(user_id=id)
+  #driver = Profile.objects.get(user_id)
+  driver.is_driver=False
+  driver.save()     
+  return render(request, 'driver/driver_inactive.html', {})
