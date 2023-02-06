@@ -79,7 +79,7 @@ class DriverAcceptOrderView(UpdateView):
     return super().form_valid(form)
   
   def get_success_url(self):
-    return reverse('driver:driver-main', args=[self.request.user.id])
+    return reverse('driver:driver-send-email', args=[self.kwargs.get("id")])
   
 
 class DriverBeginOrder(UpdateView):
@@ -114,4 +114,8 @@ class DriverCompleteOrder(UpdateView):
   
   def get_success_url(self):
     return reverse('driver:driver-main', args=[self.request.user.id])
+  
+
+def driver_send_email(request):
+  return None
   

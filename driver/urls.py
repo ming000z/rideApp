@@ -6,7 +6,8 @@ from .views import (DriverUpdateView,
                     DriverSearchView,
                     DriverAcceptOrderView,
                     DriverCompleteOrder,
-                    DriverBeginOrder)
+                    DriverBeginOrder,
+                    driver_send_email)
 
 app_name = 'driver'
 urlpatterns = [
@@ -17,4 +18,5 @@ urlpatterns = [
   path('accept-order/<int:id>', DriverAcceptOrderView.as_view(), name="driver-accpet-order"),
   path('complete-order/<int:id>', DriverCompleteOrder.as_view(), name="driver-complete-order"),
   path('begin-order/<int:id>', DriverBeginOrder.as_view(), name="driver-begin-order"),
+  path('send-email/<int:id>', driver_send_email, name="driver-send-email"),
 ]

@@ -45,8 +45,10 @@ class ShareSearchResultView(ListView):
     latest_time = self.request.GET.get("latest-time")
     return Order.objects.filter(destination=des, 
                                 arrival_time__range=(earliest_time, latest_time),
-                                can_share=True
-                                )
+                                can_share=True,
+                                trip_status=1
+                                ).exclude(share_ids__contains=[self.request.user.username])
+    
   
 class ShareJoinOrderView(UpdateView):
   template_name = 'share/share_join.html'

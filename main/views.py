@@ -40,14 +40,18 @@ def home_page_view(request):
   except Profile.DoesNotExist:
     orders_comfirm = None
     
-  # try:
-  #   share = Order.objects.filter(share_ids)
-    
+  try:
+    share_orders = Order.objects.filter(share_ids__contains=[request.user.username])
+    print(share_orders)
+  except Order.DoesNotExist:
+    share_orders = None
+  print(share_orders)
   context = {
     'user': user,
     'profile': profile,
     'orders_open' : orders_open,
-    'orders_comfirm' : orders_comfirm
+    'orders_comfirm' : orders_comfirm,
+    'share_orders': share_orders,
   }
   return render(request, 'main/home_page.html', context)
 

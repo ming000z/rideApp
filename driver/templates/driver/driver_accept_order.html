@@ -5,8 +5,8 @@
 <form method="POST"> 
   {% csrf_token %}
   {{ form.as_p }}
-  <input type="submit" value="Accept"/>
+  <input type="submit" value="Continue"/>
 </form>
-&emsp; <button type="submit" onclick="location.href='{% url 'driver:driver-main' user.id %}'">Back</button>
+&emsp; <button type="submit" onclick="location.href='{% url 'driver:driver-find' %}'"> Back to List </button>
 
 {% endblock%}

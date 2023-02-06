@@ -54,7 +54,7 @@ class Order(models.Model):
   rider_id = models.IntegerField(default=0)
   driver_id = models.IntegerField(default=None, null=True)
   trip_status = models.IntegerField(choices=Trip_State.choices, default=Trip_State.OPEN)
-  share_ids = ArrayField(models.CharField(max_length=200), blank=True, default=None, null=True)
+  share_ids = ArrayField(models.CharField(max_length=200), blank=True, default=list)
   
   def get_create_url(self):
     return reverse('order:order-create', kwargs={'id': self.id})

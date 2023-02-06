@@ -9,7 +9,7 @@
     {% csrf_token %}
     {% if user.is_authenticated %}
       <p>Welcome user: {{user.username}}&emsp;&emsp;&emsp;
-      <a href="logout">Log out</a></p>
+      <a href="{% url 'main:log_out'%}">Log out</a></p>
       
     {% else %}
       <h3>You are not  <a href="login">log in</a>&emsp;&emsp;Don't have account?  <a href="signup">Register</a></h3>

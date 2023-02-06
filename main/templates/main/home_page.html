@@ -8,12 +8,14 @@
 {% if user.is_authenticated %}
 
 
-
+<!--------------------------- driver home link ----------------------------->
 {% if profile.is_driver %}
-   &emsp;<button type="submit" onclick="location.href='{% url 'driver:driver-main' user.id %}'">Your Driver Home </button>
+  &emsp;<button type="submit" onclick="location.href='{% url 'driver:driver-main' user.id %}'">Your Driver Home </button>
 {% else %}
-<button type="submit" onclick="location.href='{% url 'driver:driver-update' user.id %}'">Want to register as a driver? </button>
+  <button type="submit" onclick="location.href='{% url 'driver:driver-update' user.id %}'">Want to register as a driver? </button>
 {% endif%}
+
+<!--------------------------- Order and share link ----------------------------->
 
 <br>
 <br>
@@ -26,10 +28,11 @@
 </table>
 <br>
 
+<!--------------------------- Current open order link ----------------------------->
+
 <h3>Open order</h3>
 
-  {% if orders_open%}
-
+{% if orders_open%}
   <table>
     <tr>
       <th>Destination</th>
@@ -37,50 +40,73 @@
       <th>Detail</th>
       <th>Cancel</th>
     </tr>
-{% for order in orders_open %}
-<tr>
-  <td>&emsp;{{ order.destination }}&emsp;</td>
-  <td>&emsp;{{ order.arrival_time }}&emsp;</td>
-  <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-detail'  order.id%}'">view detail </button>&emsp;</td>
-  <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-delete' order.id%}'">Cancel</button>&emsp;</td>
-</tr>
-{% endfor %}
+  {% for order in orders_open %}
+  <tr>
+    <td>&emsp;{{ order.destination }}&emsp;</td>
+    <td>&emsp;{{ order.arrival_time }}&emsp;</td>
+    <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-detail'  order.id%}'">view detail </button>&emsp;</td>
+    <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-delete' order.id%}'">Cancel</button>&emsp;</td>
+  </tr>
+  {% endfor %}
 {% else %}
-<p>  currently you do not have any open order <p>
-
+  <p>  currently you do not have any open order <p>
 {% endif %}
 </table>
 
+<!--------------------------- Conform Order link ----------------------------->
 <br>
 <br>
 <br>
-  <h3>Comfirm order</h3>
-  <table>
-{% if orders_comfirm%}
+<h3>Comfirm order</h3>
 <table>
-<tr>
-  <th>Destination</th>
-  <th>Arrive Time</th>
-  <th>Detail</th>
-</tr>
+{% if orders_comfirm%}
+  <table>
+    <tr>
+      <th>Destination</th>
+      <th>Arrive Time</th>
+      <th>Detail</th> 
+    </tr>
 
-{% for order in orders_comfirm %}
-<tr>
+    {% for order in orders_comfirm %}
+    <tr>
 
-  <td>&emsp;{{ order.destination }}&emsp;</td>
-  <td>&emsp;{{ order.arrival_time }}&emsp;</td>
-  <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-detail'  order.id%}'">view detail </button>&emsp;</td></td>
-</tr>
-{% endfor %}
+      <td>&emsp;{{ order.destination }}&emsp;</td>
+      <td>&emsp;{{ order.arrival_time }}&emsp;</td>
+      <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-detail'  order.id%}'">view detail </button>&emsp;</td></td>
+    </tr>
+    {% endfor %}
+
 {% else %}
-<p>  currently you do not have any comfirm order <p>
-
+  <p>  currently you do not have any comfirm order <p>
 {% endif %}
+
 </table>
 
+<!--------------------------- Share Order link ----------------------------->
+<br>
+<br>
+<br>
+<h3>Share order</h3>
+<table>
+  {% if share_orders %}
+    <table>
+      <tr>
+        <th>Destination</th>
+        <th>Arrive Time</th>
+        <th>Detail</th>
+      </tr>
 
-
-<h3>Your share order</h3>
+    {% for share in share_orders %}
+    <tr>
+      <td>&emsp;{{ share.destination }}&emsp;</td>
+      <td>&emsp;{{ share.arrival_time }}&emsp;</td>
+      <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-detail'  share.id%}'">view detail </button>&emsp;</td></td>
+    </tr>
+    {% endfor %}
+  {% else %}
+    <p> currently you do not have any share order <p>
+  {% endif %}
+</table>
 
 {% endif%}
 {% endblock%}
