@@ -6,8 +6,11 @@
 <button type="submit" onclick="location.href='{% url 'driver:driver-profile' object.user.id %}'">Edit Driver profile</button>
 &emsp;<button type="submit" onclick="location.href='{% url 'driver:driver-find' %}'">Get More orders</button>
 
-
-<button type="submit" onclick="location.href='{% url 'driver:driver-inactive' object.user.id %}'">Inactive</button>
+{% if driver_in_trip_order %}
+  <button type="submit" disabled>You can't inactive right now</button>
+{% else %}
+  <button type="submit" onclick="location.href='{% url 'driver:driver-inactive' object.user.id %}'">Inactive</button>
+{% endif %}
 
 <h2>Confirmed order</h2>
 
