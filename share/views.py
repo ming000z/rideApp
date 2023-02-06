@@ -8,7 +8,7 @@ from django.views.generic import (
   TemplateView
 )
 
-from main.models import (Profile, Order)
+from main.models import (Profile, Order, Share)
 from .forms import ShareJoinOrderForm, ShareCancelForm
 
 
@@ -56,6 +56,21 @@ class SharCancelView(UpdateView):
   template_name = 'share/share_cancel.html'
   form_class = ShareCancelForm
   queryset = Order.objects.all()
+  
+  def get_form_kwargs(self):
+        kwargs = super(SharCancelView, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
+  
+  def get_object(self):
+    id_ = self.kwargs.get("id")
+    return get_object_or_404(Order, id=id_)
+  
+  def form_valid(self, form):
+    return super().form_valid(form)
+  
+  def get_success_url(self):
+    return reverse('main:main-home')
   
   
 

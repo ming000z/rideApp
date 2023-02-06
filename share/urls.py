@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ShareSearchResultView, ShareHomeView, ShareJoinOrderView
+from .views import ShareSearchResultView, ShareHomeView, ShareJoinOrderView, SharCancelView
 
 app_name = 'share'
 
@@ -7,6 +7,7 @@ urlpatterns = [
   path('', ShareHomeView.as_view(), name='share-home'),
   path('search', ShareSearchResultView.as_view(), name='share-search-result'),
   path('join/<int:id>', ShareJoinOrderView.as_view(), name='share-join'),
+  path('cancel/<int:id>',SharCancelView.as_view(), name='share-cancel'),
   
   # path('<int:id>/profile', UsrProfileView.as_view() , name='usr-profile'),
   # path('order-update/<int:id>', UsrUpdateView.as_view(), name='usr-order-update'),

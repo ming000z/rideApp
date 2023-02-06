@@ -58,3 +58,4 @@ class Share(models.Model):
   # share_id is share name
   share_id = models.CharField(max_length=50)
   share_passsenger = models.IntegerField(default=0)
+  order_id = models.IntegerField(default=0)

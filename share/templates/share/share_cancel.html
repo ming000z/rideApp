@@ -6,9 +6,9 @@
 <form method="POST"> 
   {% csrf_token %}
   {{ form.as_p }}
-  <input type="submit" value="Login"/>
+  <input type="submit" value="Yes"/>
 </form>
-&emsp; <button type="submit" onclick="location.href='{% url 'main:main-home' %}'">Cancel</button>
+&emsp; <button type="submit" onclick="location.href='{% url 'main:main-home' %}'">Back to home page</button>
 
 
 {% endblock%}
