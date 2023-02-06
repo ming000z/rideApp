@@ -12,8 +12,9 @@
 {% if profile.is_driver %}
   &emsp;<button type="submit" onclick="location.href='{% url 'driver:driver-main' user.id %}'">Your Driver Home </button>
 {% else %}
-  <button type="submit" onclick="location.href='{% url 'driver:driver-update' user.id %}'">Want to register as a driver? </button>
+&emsp;<button type="submit" onclick="location.href='{% url 'driver:driver-update' user.id %}'">Want to register as a driver? </button>
 {% endif%}
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<button type="submit" onclick="location.href='{% url 'main:update_password' %}'">change password </button>
 
 <!--------------------------- Order and share link ----------------------------->
 
