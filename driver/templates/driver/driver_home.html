@@ -5,20 +5,29 @@
 <h2>Hi driver: {{ object.user }}</h2> 
 <button type="submit" onclick="location.href='{% url 'driver:driver-profile' object.user.id %}'">Edit Driver profile</button>
 &emsp;<button type="submit" onclick="location.href='{% url 'driver:driver-find' %}'">Get More orders</button>
-<h2>Ongoing order</h2>
+
+<h2>Confirmed order</h2>
 
 {% if driver_confirm_order %}
   <table>
     <tr>
       <th>Destination</th>
       <th>Arrive Time</th>
-      <th>Detail</th>
+      <th>View Detail</th>
+      <th>Start this Order</th>
+
     </tr>
     {% for order in driver_confirm_order %}
     <tr>
       <td>&emsp;{{ order.destination }}&emsp;</td>
       <td>&emsp;{{ order.arrival_time }}&emsp;</td>
-      <td>&emsp;<button type="submit" onclick="location.href='{% url 'driver:driver-begin-order' order.id %}'">View to start </button>&emsp;</td>
+      <td>&emsp;<button type="submit" onclick="location.href='{% url 'order:order-detail' order.id %}'">View Detail </button>&emsp;</td>
+      {% if driver_in_trip_order %}
+      <td>&emsp;<button type="submit" disabled>Start this tirp </button>&emsp;</td>
+      {% else %}
+      <td>&emsp;<button type="submit" onclick="location.href='{% url 'driver:driver-begin-order' order.id %}'">Start this tirp </button>&emsp;</td>
+      {% endif %}
+      
     </tr>
     {% endfor %}
   </table>
@@ -36,7 +45,7 @@
     <tr>
       <th>Destination</th>
       <th>Arrive Time</th>
-      <th>Detail</th>
+      <th>Mark As Complete</th>
     </tr>
 
   {% for order in driver_in_trip_order %}

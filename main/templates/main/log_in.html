@@ -2,6 +2,12 @@
 
 {% block navbar %}
 
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+  {% endfor %}
+{% endif %}
+
 <h1>This is user log in</h1>
 <form method="POST"> 
   {% csrf_token %}
