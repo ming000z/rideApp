@@ -37,15 +37,15 @@
     <tr>
       <th>Destination</th>
       <th>Arrive Time</th>
-      <th>Detail</th>
+      <th>Edit/View Detail</th>
       <th>Cancel</th>
     </tr>
   {% for order in orders_open %}
   <tr>
     <td>&emsp;{{ order.destination }}&emsp;</td>
     <td>&emsp;{{ order.arrival_time }}&emsp;</td>
-    <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-detail'  order.id%}'">view detail </button>&emsp;</td>
-    <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-delete' order.id%}'">Cancel</button>&emsp;</td>
+    <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-detail'  order.id%}'">edit / view </button>&emsp;</td>
+    <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-delete' order.id%}'">cancel</button>&emsp;</td>
   </tr>
   {% endfor %}
 {% else %}
@@ -94,6 +94,7 @@
         <th>Destination</th>
         <th>Arrive Time</th>
         <th>Detail</th>
+        <th>Cancel</th>
       </tr>
 
     {% for share in share_orders %}
@@ -101,6 +102,11 @@
       <td>&emsp;{{ share.destination }}&emsp;</td>
       <td>&emsp;{{ share.arrival_time }}&emsp;</td>
       <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-detail'  share.id%}'">view detail </button>&emsp;</td></td>
+      {% if share.trip_status == 1 %}
+      <td>&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-detail'  share.id%}'">cancel </button>&emsp;</td></td>
+      {% else %}
+      <td>&emsp;<button type="submit" disabled>can't cancel </button>&emsp;</td></td>
+      {% endif %}
     </tr>
     {% endfor %}
   {% else %}

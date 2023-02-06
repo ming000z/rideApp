@@ -6,10 +6,6 @@ from django.urls import reverse
 
 # Create your models here.
 class Profile(models.Model):
-  # username = models.CharField(max_length=120)
-  # password = models.CharField(max_length=120)
-  # email = models.CharField(max_length=120, blank=True, null=True)
-  # active = models.BooleanField(default=True)      # account activity
   user = models.OneToOneField(User, on_delete=models.CASCADE)
   is_driver = models.BooleanField(default=False)
   
@@ -54,10 +50,11 @@ class Order(models.Model):
   rider_id = models.IntegerField(default=0)
   driver_id = models.IntegerField(default=None, null=True)
   trip_status = models.IntegerField(choices=Trip_State.choices, default=Trip_State.OPEN)
+  # share_id is share name
   share_ids = ArrayField(models.CharField(max_length=200), blank=True, default=list)
   
-  def get_create_url(self):
-    return reverse('order:order-create', kwargs={'id': self.id})
-  
-  # def get_absolute_url(self):
-  #   return reverse('order:driver-detail', kwargs={'id': self.id})
+class Share(models.Model):
+  rider_id = models.IntegerField(default=0)
+  # share_id is share name
+  share_id = models.CharField(max_length=50)
+  share_passsenger = models.IntegerField(default=0)

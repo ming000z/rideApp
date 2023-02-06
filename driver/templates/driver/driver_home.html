@@ -23,7 +23,7 @@
       <td>&emsp;{{ order.arrival_time }}&emsp;</td>
       <td>&emsp;<button type="submit" onclick="location.href='{% url 'order:order-detail' order.id %}'">View Detail </button>&emsp;</td>
       {% if driver_in_trip_order %}
-      <td>&emsp;<button type="submit" disabled>Start this tirp </button>&emsp;</td>
+      <td>&emsp;<button type="submit" disabled>can't start a new trip </button>&emsp;</td>
       {% else %}
       <td>&emsp;<button type="submit" onclick="location.href='{% url 'driver:driver-begin-order' order.id %}'">Start this tirp </button>&emsp;</td>
       {% endif %}

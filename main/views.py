@@ -42,10 +42,8 @@ def home_page_view(request):
     
   try:
     share_orders = Order.objects.filter(share_ids__contains=[request.user.username])
-    print(share_orders)
   except Order.DoesNotExist:
     share_orders = None
-  print(share_orders)
   context = {
     'user': user,
     'profile': profile,

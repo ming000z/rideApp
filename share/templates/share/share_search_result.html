@@ -16,6 +16,8 @@
 
 {% else %}
     <p>No available order for you to join</p>
+    &emsp;<button type="submit" onclick="location.href='{% url 'share:share-home' %}'">Start A New Search </button>
+    &emsp;<button type="submit" onclick="location.href='{% url 'main:main-home' %}'">Back to Home </button>
 {% endif %}
 
 {% endblock%}
