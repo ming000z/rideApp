@@ -2,7 +2,8 @@ from django.shortcuts import render,redirect, get_object_or_404
 from django.urls import reverse
 
 from django.utils import timezone
-
+from django.core.mail import send_mail
+from django.contrib.auth.models import User
 from main.models import Profile, Order
 from .forms import ProfileForm, DriverAcceptForm, DriverCompleteOrderForm
 from django.views.generic import (
@@ -116,6 +117,19 @@ class DriverCompleteOrder(UpdateView):
     return reverse('driver:driver-main', args=[self.request.user.id])
   
 
-def driver_send_email(request):
-  return None
+def driver_send_email(request,id):
+  #template_name = 'driver/driver_sned_email.html'
+  email_list=[]
+  order = Order.objects.get(id=id)
+  email_list.append(User.objects.get(id=order.rider_id).email)
+
+  for share_id in order.share_ids:
+    email_list.append(User.objects.get(username=share_id).email)
   
+  send_mail(
+    "Oder update",
+    "Hi, the driver accepted your order",
+    "mingzhe.z0629@gmail.com",
+    email_list,#receiver email include rider and sharer
+  )
+  return render(request, 'driver/driver_send_email.html', {})
